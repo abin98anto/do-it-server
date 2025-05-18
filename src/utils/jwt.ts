@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import JwtData from "../constants/JwtData";
+import JwtData from "../types/misc/JwtData";
 
 const ACCESS_SECRET = process.env.JWT_ACCESS!;
 const ACCESS_EXPIRY = "1d";
