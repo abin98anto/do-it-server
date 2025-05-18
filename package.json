@@ -1,0 +1,34 @@
+{
+  "name": "do-it-server",
+  "version": "1.0.0",
+  "description": "Boarding week machine task for the back end.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "dev": "nodemon --watch src --ext ts --exec \"npm run build && node dist/index.js\"",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abin98anto/do-it-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abin98anto/do-it-server/issues"
+  },
+  "homepage": "https://github.com/abin98anto/do-it-server#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.18",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
