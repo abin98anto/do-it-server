@@ -9,6 +9,7 @@ import { errorHandler } from "./middlewares/errorMiddleware";
 import { createServer } from "http";
 import { initializeSocket } from "./services/SocketService";
 import userRouter from "./routes/userRoutes";
+import taskRouter from "./routes/taskRouter";
 
 const app = express();
 app.use(cors(corsOptions));
@@ -24,14 +25,13 @@ app.get("/", (_req, res) => {
   res.send("Server is runningggg!");
 });
 
-app.use(userRouter);
+app.use("/api", userRouter);
+app.use("/api/task", taskRouter);
 
 app.use(errorHandler);
 
-// app.listen(PORT, () => {
 connectDB().then(() => {
   server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 });
-// });

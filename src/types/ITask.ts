@@ -6,4 +6,6 @@ export default interface ITask {
   description: string;
   dueDate: Date;
   status: TaskStatus;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
