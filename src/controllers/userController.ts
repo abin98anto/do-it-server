@@ -24,10 +24,11 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
   await newUser.save();
 
   res.status(200).json({ success: true, data: newUser });
+  return;
 });
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
-  const userData: Partial<IUser> = req.body.userData;
+  const userData: Partial<IUser> = req.body;
 
   const user = await UserModel.findOne({ email: userData.email });
   const isPasswordValid = await bcrypt.compare(
