@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import { asyncHandler } from "../middlewares/asyncHandler";
 import ITask from "../types/ITask";
 import TaskModel from "../models/TaskModel";
+import { TaskStatus } from "../constants/TaskStatus";
 
 export const createTask = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { title, description, dueDate, status } = req.body;
+    const { title, description, dueDate } = req.body;
     const userId = req.user!._id;
 
     const task = await TaskModel.create({
@@ -13,7 +14,7 @@ export const createTask = asyncHandler(
       title,
       description,
       dueDate,
-      status: status || "pending",
+      status: TaskStatus.PENDING,
     });
 
     const io = req.app.get("io");
@@ -25,7 +26,7 @@ export const createTask = asyncHandler(
 
 export const getTasks = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const userId = req.user!._id;
+    const { userId } = req.params;
     const tasks = await TaskModel.find({ userId });
     res.status(200).json({ success: true, data: tasks });
   }
